@@ -20,13 +20,13 @@ data work.Exam_Grade;
 	input ID $
 		  Last :$10.
 		  First $
-		  Classification
+		  Classification $
 		  Date_Taken :mmddyy.
 		  Part_1
 		  Part_2
-		  Donation :dollar.;
+		  Donation :dollar7.2;
 	Total_Score=sum(Part_1,Part_2);
-	Total_Point=sum(Part_1,Part_2)*2.5;
+	Total_Point=Total_Score*2.5;
 	Exam_Day=weekday(Date_Taken);
 	label Last='Last Name'
 		  First='First Name'
@@ -37,11 +37,10 @@ data work.Exam_Grade;
 		  Total_Point='Points'
 		  Exam_Day='Exam Day';
 	format Date_Taken date9.
-		   Donation dollar5.2
+		   Donation dollar7.2
 		   Total_Point 5.1;
 	drop Part_1
 		 Part_2;
-
 run;
 
 proc sort data=work.Exam_Grade
@@ -85,12 +84,12 @@ proc format;
 			   90-high='A';
 run;
 
-ods html file='E:\EXST_4025\Assignment_2\HW2.html';
-
-proc sort data=work.Exam_Grade
+proc sort data=hw2.HW2Exam;
 		  out=work.Sorted;
 	by Last First;
 run;
+
+ods html file='E:\EXST_4025\Assignment_2\HW2.html';
 
 proc print data=work.Sorted noobs label;
 	var ID
