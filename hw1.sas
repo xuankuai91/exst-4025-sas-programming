@@ -26,7 +26,7 @@ data work.US_Low_F;
 		  Country = 'US' and
 		  Salary <= 27250;
 	format Salary comma6.
-		   Birth_Date Hire_Date mmddyy8.;
+		   Birth_Date Hire_Date mmddyy10.;
 	label Employee_Id='ID'
 		  First_Name='First'
 		  Last_Name='Last'
@@ -65,7 +65,7 @@ libname hw1b 'E:\EXST_4025\Assignment_1\HW1Sales.xls';
 data work.US_M_rep3_4;
 	set hw1b.'UnitedStates$'n;
 	where Gender='M' and
-		  Job_Title in ('Sales Rep. III' 'Sales Rep. Iv');
+		  Job_Title in ('Sales Rep. III' 'Sales Rep. IV');
 	keep First_Name
 		 Last_Name
 		 Salary
@@ -102,3 +102,5 @@ proc print data=work.US_M_rep3_4 noobs label n;
 	sum Salary;
 	format Salary dollar8.;
 run;
+
+libname hw1b clear;
