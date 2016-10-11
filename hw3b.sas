@@ -84,7 +84,7 @@ proc print data=hw3.HW3Exam2Grades noobs label n;
 	title5 'By Section';
 run;
 
-proc means data=hw3.HW3Exam2Grades maxdec=1 nonobs n mean min max median nmiss;
+proc means data=hw3.HW3Exam2Grades maxdec=1 n mean min max median nmiss;
 	var Exam2
 		Take
 		Retake
@@ -94,7 +94,7 @@ run;
 
 options nolabel;
 
-proc means data=hw3.HW3Exam2Grades fw=6;
+proc means data=hw3.HW3Exam2Grades fw=6 maxdec=1 n mean min max median nmiss;
 	class Sec;
 	title5 'By Section';
 run;
