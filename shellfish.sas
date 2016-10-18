@@ -19,10 +19,10 @@ libname fishxlsx 'C:\Temp\GulfShellfish.xlsx';
 data work.crabs;
 	infile 'crabs.txt' dlm='~';
 	input Year
-		  State $
+		  State :$2.
 		  Species :$10.
-		  Pounds :comma10.
-		  Value :dollar11.;
+		  Pounds :comma.
+		  Value :dollar.;
 run;
 
 proc sort data=work.crabs;
@@ -49,8 +49,8 @@ data work.shellfish;
 	format Pounds comma13.
 		   Value dollar15.
 		   Checkoff dollar10.
-		   PricePerLb dollar8.2;
-	label PricePerLb='Price/Lb';
+		   PricePerLb dollar6.2;
+	label PricePerLb='Price/Lb.';
 run;
 
 proc sort data=work.shellfish
@@ -66,8 +66,6 @@ proc contents data=fish.Shellfish;
 run;
 
 proc print data=fish.Shellfish label;
-	var Species
-		Year;
 	by State;
 	id State;
 	sum Pounds
@@ -86,10 +84,6 @@ run;
 proc print data=fish.Shellfish label noobs;
 	by State;
 	format State $name.;
-	var Species
-		Pounds
-		Value
-		Checkoff;
 	sum Pounds
 		Value
 		Checkoff;
@@ -106,7 +100,7 @@ proc means data=fish.Shellfish mean min max maxdec=2;
 		Checkoff;
 	class Species
 		  State;
-	where State in ('LA', "TX");
+	where State in ('LA', 'TX');
 	title4 'Louisiana and Texas Shellfish Harvest 2006-2011 Summary';
 run;
 
