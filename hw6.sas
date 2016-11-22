@@ -117,7 +117,7 @@ data hw6.A_recs(keep=AccNo
 				  @;
 			array Cas{5} TCas1-TCas5;
 			array Cptr{5} (10,21,32,43,64);
-			*If a casualty involved, output hw6.to data set;
+			*If a casuality involved, output hw6.to data set;
 			do c=1 to 5;
 				if Cas{c} ne ' ' then do;
 					input @(Cptr{c}) CasAge $2.
