@@ -39,6 +39,7 @@ proc sort data=work.animals;
 run;
 
 data work.saletemp;
+	length Owner $ 16;
 	merge final.Exhibitors(in=inExhi)
 		  work.animals(in=inAnim);
 	by OwnerID;
@@ -71,7 +72,7 @@ proc print data=final.sale label noobs;
 		Wt
 		SalePrice
 		Owner;
-	title4 'Lifestock Sale Data';
+	title4 'Livestock Sale Data';
 run;
 
 proc sort data=final.sale
@@ -90,7 +91,7 @@ proc print data=work.sorted label;
 		DaysOwned;
 	sum SalePrice;
 	format SalePrice dollar10.2;
-	title4 'Lifestock Sale Data by Exhibitor';
+	title4 'Livestock Sale Data by Exhibitor';
 run;
 
 options nolabel;
@@ -100,11 +101,11 @@ proc means data=final.sale mean min max sum maxdec=1;
 		SalePrice
 		DaysOwned;
 	class Type;
-	title4 'Lifestock Sale Data Summarized by Animal';
+	title4 'Livestock Sale Data Summarized by Animal';
 run;
 
 options label;
 
 proc contents data=final.sale;
-	title4 'Lifestock Sale Data';
+	title4 'Livestock Sale Data';
 run;
